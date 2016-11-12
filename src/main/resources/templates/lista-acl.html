@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Controle de Acesso - Rodrigo Nunes</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+	crossorigin="anonymous" />
+</head>
+<body>
+	<h1>Controle de Acesso - ACL</h1>
+
+	<form class="form-inline" method="POST" style="margin: 20px 0" th:action="@{/acl-valid}" th:object="${view}">
+		<div class="form-group">
+
+			<label for="sel1">Sujeitos:</label> <select class="form-control"
+				th:field="*{sujeito}" id="sel1">
+				<option th:each="s : ${sujeitos}" th:value="${s}"><label th:text="${s}"></label></option>
+
+			</select> <label for="sel2">Objetos:</label> <select class="form-control"
+				th:field="*{objeto}" id="sel2">
+				<option th:each="o : ${objetos}" th:value="${o}"><label th:text="${o}"></label></option>
+			</select>
+
+			<button class="btn btn-sucess" type="submit">Validar</button>
+			<h3 th:text="${checkMsg}"></h3>
+		</div>
+
+	</form>
+
+</body>
+</html>
